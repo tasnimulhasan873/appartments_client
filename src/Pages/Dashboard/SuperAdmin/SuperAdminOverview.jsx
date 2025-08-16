@@ -1,4 +1,3 @@
-
 import React from "react";
 import { FiUsers, FiHome, FiSettings, FiBarChart2 } from "react-icons/fi";
 import { BarChart, PieChart } from "../../../components/Charts/Charts";
@@ -31,7 +30,9 @@ const SuperAdminOverview = () => {
         ))}
       </div>
       <div className="glass-dark rounded-2xl p-8 shadow-lg">
-        <h2 className="text-xl font-semibold mb-4 text-primary">Super Admin Charts</h2>
+        <h2 className="text-xl font-semibold mb-4 text-primary">
+          Super Admin Charts
+        </h2>
         <div className="flex flex-col md:flex-row gap-8">
           <div className="flex-1 min-h-[250px] bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl flex items-center justify-center">
             <BarChart
