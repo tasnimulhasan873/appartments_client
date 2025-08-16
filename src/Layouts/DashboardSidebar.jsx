@@ -28,6 +28,12 @@ import UseAuth from "../hooks/UseAuth";
 const sidebarLinks = [
   // Super Admin links (highest level access)
   {
+    to: "/dashboard/superadmin-overview",
+    icon: <FaChartLine />,
+    label: "Overview",
+    roles: ["superAdmin"],
+  },
+  {
     to: "/dashboard/superAdminProfile",
     icon: <FaUser />,
     label: "Super Admin Profile",
@@ -59,6 +65,12 @@ const sidebarLinks = [
   },
 
   // Admin links
+  {
+    to: "/dashboard/admin-overview",
+    icon: <FaChartLine />,
+    label: "Overview",
+    roles: ["admin"],
+  },
   {
     to: "/dashboard",
     icon: <FaHome />,
@@ -104,6 +116,12 @@ const sidebarLinks = [
 
   // User links
   {
+    to: "/dashboard/user-overview",
+    icon: <FaChartLine />,
+    label: "Overview",
+    roles: ["user"],
+  },
+  {
     to: "/dashboard/userProfile",
     icon: <FaUserCircle />,
     label: "User Profile",
@@ -129,6 +147,12 @@ const sidebarLinks = [
   },
 
   // Member links
+  {
+    to: "/dashboard/member-overview",
+    icon: <FaChartLine />,
+    label: "Overview",
+    roles: ["member"],
+  },
   {
     to: "/dashboard/memberProfile",
     icon: <FaUser />,

@@ -37,6 +37,11 @@ import WebsiteAnalytics from "../Pages/Dashboard/SuperAdmin/WebsiteAnalytics";
 import StripeWrapper from "../Pages/Dashboard/Member/StripeWrapper";
 import ManageProperties from "../Pages/Dashboard/Admin/ManageProperties";
 import ApartmentDetails from "../Pages/Home/Apartments/ApartmentDetails";
+import Overview from "../Pages/Dashboard/Overview";
+import AdminOverview from "../Pages/Dashboard/Admin/AdminOverview";
+import MemberOverview from "../Pages/Dashboard/Member/MemberOverview";
+import SuperAdminOverview from "../Pages/Dashboard/SuperAdmin/SuperAdminOverview";
+import UserOverview from "../Pages/Dashboard/User/UserOverview";
 
 export const router = createBrowserRouter([
   {
@@ -102,6 +107,10 @@ export const router = createBrowserRouter([
         path: "userAnnouncement",
         Component: UserAnnouncements,
       },
+      {
+        path: "user-overview",
+        Component: UserOverview,
+      },
 
       // Member routes
       {
@@ -141,6 +150,14 @@ export const router = createBrowserRouter([
         element: (
           <MemberRoutes>
             <PaymentHistory />
+          </MemberRoutes>
+        ),
+      },
+      {
+        path: "member-overview",
+        element: (
+          <MemberRoutes>
+            <MemberOverview />
           </MemberRoutes>
         ),
       },
@@ -194,6 +211,14 @@ export const router = createBrowserRouter([
           </AdminRoutes>
         ),
       },
+      {
+        path: "admin-overview",
+        element: (
+          <AdminRoutes>
+            <AdminOverview />
+          </AdminRoutes>
+        ),
+      },
 
       // SuperAdmin routes - Updated with actual components
       {
@@ -236,8 +261,14 @@ export const router = createBrowserRouter([
           </SuperAdminRoutes>
         ),
       },
-      // (Removed duplicate /apartments/:id route from /dashboard children)
+      {
+        path: "superadmin-overview",
+        element: (
+          <SuperAdminRoutes>
+            <SuperAdminOverview />
+          </SuperAdminRoutes>
+        ),
+      },
     ],
   },
 ]);
-// (Removed from /dashboard children)
