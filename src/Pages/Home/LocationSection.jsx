@@ -26,113 +26,118 @@ const LocationSection = () => {
       name: "Metro Station",
       distance: "5 min walk",
       icon: FiMove,
-      color: "text-blue-400",
+      color: "text-secondary",
+      bgColor: "bg-secondary/10",
     },
     {
       name: "Shopping Mall",
       distance: "10 min drive",
       icon: FiMapPin,
-      color: "text-purple-400",
+      color: "text-secondary",
+      bgColor: "bg-secondary/10",
     },
     {
       name: "Hospital",
       distance: "7 min drive",
       icon: FiMapPin,
-      color: "text-green-400",
+      color: "text-secondary",
+      bgColor: "bg-secondary/10",
     },
     {
       name: "Bus Stop",
       distance: "2 min walk",
       icon: FiTruck,
-      color: "text-orange-400",
+      color: "text-secondary",
+      bgColor: "bg-secondary/10",
     },
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative bg-primary py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-surface/30 to-primary"></div>
+      <div className="absolute top-32 right-16 w-40 h-40 bg-secondary/5 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-20 left-20 w-28 h-28 bg-white/5 rounded-full blur-2xl animate-float-delay"></div>
+      <div className="relative max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6">
-            <FiMapPin className="text-2xl sm:text-3xl text-white" />
+        <div className="text-center mb-16 sm:mb-20">
+          <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-secondary/20 to-white/10 rounded-full mb-6 backdrop-blur-sm border border-secondary/20">
+            <FiMapPin className="text-2xl sm:text-3xl text-secondary" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
             Perfect Location & Connectivity
           </h2>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-4 sm:mb-6 rounded-full"></div>
-          <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto">
-            Strategically located with easy access to all city amenities
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-secondary to-white mx-auto mb-4 sm:mb-6 rounded-full"></div>
+          <p className="text-text-secondary text-base sm:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
+            Strategically located with seamless access to all city amenities and
+            transport hubs
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Location Details */}
-          <div className="space-y-6 sm:space-y-8">
+          <div className="space-y-8">
             {/* Address Card */}
-            <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-lg border border-gray-700/50 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
-              <div className="flex items-center mb-4 sm:mb-6">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl flex items-center justify-center mr-4">
-                  <FiMapPin className="text-xl sm:text-2xl text-purple-400" />
+            <div className="glass-dark rounded-3xl p-8 border border-secondary/10 hover:border-secondary/20 transition-all duration-300 group">
+              <div className="flex items-center mb-6">
+                <div className="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center mr-4 group-hover:bg-secondary/20 transition-colors">
+                  <FiMapPin className="text-2xl text-secondary" />
                 </div>
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+                <h3 className="text-2xl lg:text-3xl font-bold text-white">
                   Prime Address
                 </h3>
               </div>
 
-              <div className="space-y-3 sm:space-y-4 text-gray-300">
-                <p className="text-base sm:text-lg leading-relaxed">
-                  Our building is strategically positioned in the heart of the
-                  city, offering unparalleled access to business districts,
-                  entertainment hubs, and essential services.
-                </p>
+              <p className="text-text-secondary text-lg leading-relaxed mb-6">
+                Strategically positioned in the heart of the city, offering
+                unparalleled access to business districts, entertainment hubs,
+                and essential services.
+              </p>
 
-                <div className="bg-gray-800/50 rounded-xl p-4 sm:p-6">
-                  <div className="space-y-2 sm:space-y-3">
-                    <div className="flex items-center">
-                      <FiMapPin className="text-purple-400 mr-3 flex-shrink-0" />
-                      <span className="text-sm sm:text-base">
-                        <strong className="text-white">Address:</strong> House
-                        23, Block C, Mirpur, Dhaka
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <FiNavigation className="text-purple-400 mr-3 flex-shrink-0" />
-                      <span className="text-sm sm:text-base">
-                        <strong className="text-white">Area:</strong> Premium
-                        Residential Zone
-                      </span>
-                    </div>
-                    <div className="flex items-center">
-                      <FiClock className="text-purple-400 mr-3 flex-shrink-0" />
-                      <span className="text-sm sm:text-base">
-                        <strong className="text-white">Accessibility:</strong>{" "}
-                        24/7 All Transport
-                      </span>
-                    </div>
+              <div className="glass rounded-xl p-6 border border-secondary/5">
+                <div className="space-y-4">
+                  <div className="flex items-center">
+                    <FiMapPin className="text-secondary mr-3 flex-shrink-0" />
+                    <span className="text-white">
+                      <strong>Address:</strong> House 23, Block C, Mirpur, Dhaka
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <FiNavigation className="text-secondary mr-3 flex-shrink-0" />
+                    <span className="text-white">
+                      <strong>Area:</strong> Premium Residential Zone
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <FiClock className="text-secondary mr-3 flex-shrink-0" />
+                    <span className="text-white">
+                      <strong>Accessibility:</strong> 24/7 All Transport
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Nearby Places */}
-            <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-lg border border-gray-700/50 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
+            <div className="glass-dark rounded-3xl p-8 border border-secondary/10">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <FiNavigation className="text-secondary mr-3" />
                 Nearby Conveniences
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {nearbyPlaces.map((place, index) => (
                   <div
                     key={index}
-                    className="flex items-center bg-gray-800/50 p-3 sm:p-4 rounded-xl hover:bg-gray-700/50 transition-colors duration-300"
+                    className="flex items-center glass p-4 rounded-xl hover:bg-secondary/5 transition-all duration-300 border border-secondary/5 group"
                   >
-                    <place.icon
-                      className={`text-lg sm:text-xl ${place.color} mr-3 flex-shrink-0`}
-                    />
+                    <div
+                      className={`w-10 h-10 ${place.bgColor} rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform`}
+                    >
+                      <place.icon className={`text-lg ${place.color}`} />
+                    </div>
                     <div>
-                      <p className="text-white font-medium text-sm sm:text-base">
-                        {place.name}
-                      </p>
-                      <p className="text-gray-400 text-xs sm:text-sm">
+                      <p className="text-white font-medium">{place.name}</p>
+                      <p className="text-text-muted text-sm">
                         {place.distance}
                       </p>
                     </div>
@@ -142,30 +147,35 @@ const LocationSection = () => {
             </div>
 
             {/* Transportation */}
-            <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-lg border border-gray-700/50 rounded-2xl sm:rounded-3xl p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
-                Transportation Options
+            <div className="glass-dark rounded-3xl p-8 border border-secondary/10">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <FiTruck className="text-secondary mr-3" />
+                Transportation Hub
               </h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between bg-gray-800/50 p-3 sm:p-4 rounded-xl">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between glass p-4 rounded-xl border border-secondary/5 group hover:border-secondary/20 transition-all">
                   <div className="flex items-center">
-                    <FiMove className="text-blue-400 mr-3 text-lg" />
-                    <span className="text-white text-sm sm:text-base">
+                    <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center mr-3 group-hover:bg-secondary/20 transition-colors">
+                      <FiMove className="text-secondary" />
+                    </div>
+                    <span className="text-white font-medium">
                       Metro Station
                     </span>
                   </div>
-                  <span className="text-green-400 font-medium text-sm sm:text-base">
+                  <span className="text-secondary font-semibold">
                     5 min walk
                   </span>
                 </div>
-                <div className="flex items-center justify-between bg-gray-800/50 p-3 sm:p-4 rounded-xl">
+                <div className="flex items-center justify-between glass p-4 rounded-xl border border-secondary/5 group hover:border-secondary/20 transition-all">
                   <div className="flex items-center">
-                    <FiTruck className="text-orange-400 mr-3 text-lg" />
-                    <span className="text-white text-sm sm:text-base">
+                    <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center mr-3 group-hover:bg-secondary/20 transition-colors">
+                      <FiTruck className="text-secondary" />
+                    </div>
+                    <span className="text-white font-medium">
                       Bus Routes: 2, 10, 60
                     </span>
                   </div>
-                  <span className="text-green-400 font-medium text-sm sm:text-base">
+                  <span className="text-secondary font-semibold">
                     2 min walk
                   </span>
                 </div>
@@ -175,7 +185,7 @@ const LocationSection = () => {
 
           {/* Interactive Map */}
           <div className="relative">
-            <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-square w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-gray-700/50">
+            <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-square w-full rounded-3xl overflow-hidden shadow-2xl border border-secondary/20 group">
               <MapContainer
                 center={position}
                 zoom={16}
@@ -200,22 +210,44 @@ const LocationSection = () => {
               </MapContainer>
 
               {/* Map Overlay Info */}
-              <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm text-white p-3 sm:p-4 rounded-xl z-[1000]">
+              <div className="absolute top-6 left-6 glass-dark backdrop-blur-md text-white p-4 rounded-xl z-[1000] border border-secondary/20">
                 <div className="flex items-center">
-                  <FiMapPin className="text-purple-400 mr-2" />
-                  <span className="font-medium text-sm sm:text-base">
-                    Our Location
-                  </span>
+                  <FiMapPin className="text-secondary mr-3" />
+                  <div>
+                    <div className="font-semibold">Our Location</div>
+                    <div className="text-xs text-text-muted">
+                      Premium Building
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              {/* Hover Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 to-secondary/0 group-hover:from-secondary/5 group-hover:to-secondary/10 transition-all duration-500 rounded-3xl"></div>
             </div>
 
-            {/* Directions Button */}
-            <div className="mt-6 text-center">
-              <button className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base">
-                <FiNavigation className="mr-2" />
+            {/* Action Buttons */}
+            <div className="mt-8 space-y-4">
+              <button className="btn-primary w-full flex items-center justify-center group">
+                <FiNavigation className="mr-3 group-hover:scale-110 transition-transform" />
                 Get Directions
               </button>
+              <button className="btn-outline w-full flex items-center justify-center group">
+                <FiMapPin className="mr-3 group-hover:scale-110 transition-transform" />
+                View on Google Maps
+              </button>
+            </div>
+
+            {/* Location Stats */}
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <div className="glass-dark p-4 rounded-xl border border-secondary/10 text-center">
+                <div className="text-2xl font-bold text-secondary">5</div>
+                <div className="text-sm text-text-muted">Min to Metro</div>
+              </div>
+              <div className="glass-dark p-4 rounded-xl border border-secondary/10 text-center">
+                <div className="text-2xl font-bold text-secondary">24/7</div>
+                <div className="text-sm text-text-muted">Transport</div>
+              </div>
             </div>
           </div>
         </div>

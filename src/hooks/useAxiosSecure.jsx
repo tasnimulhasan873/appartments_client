@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-  baseURL: `https://b11a12-server-side.vercel.app`,
+  baseURL: `http://localhost:3000`,
   timeout: 10000,
 });
 

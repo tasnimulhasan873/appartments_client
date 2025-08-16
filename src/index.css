@@ -1,48 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss";
-@plugin "daisyui";
 @import "./styles/animations.css";
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+/* === Modern Color Palette and Theme System === */
+:root {
+  --color-primary: rgb(13, 22, 37); /* Main dark background */
+  --color-secondary: #17c2ed; /* Accent/brand color */
+  --color-white: #ffffff; /* Pure white */
+  --color-card-bg: rgb(19, 32, 51); /* Card backgrounds */
+  --color-surface: rgb(25, 42, 65); /* Elevated surfaces */
+  --color-text-primary: #ffffff; /* Primary text */
+  --color-text-secondary: #e2e8f0; /* Secondary text */
+  --color-text-muted: #94a3b8; /* Muted text */
+  --color-border: rgba(23, 194, 237, 0.2); /* Subtle borders */
+  --color-danger: #ef4444; /* Error/danger */
+  --color-success: #10b981; /* Success */
+  --font-sans: "Inter", sans-serif;
 
-@keyframes spin-slow {
-  to {
-    transform: rotate(360deg);
-  }
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
-@keyframes pulse-slow {
-  0%,
-  100% {
-    transform: scale(0.95);
-    opacity: 0.9;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
+
+/* === Global Styles === */
+* {
+  box-sizing: border-box;
 }
+
+html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100%;
+  min-height: 100vh;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Light/Dark Mode === */
+body.light {
+  --color-primary: #f8fafc;
+  --color-card-bg: #ffffff;
+  --color-surface: #f1f5f9;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-border: rgba(23, 194, 237, 0.3);
+}
+
+/* === Component Utilities === */
+.card-bg {
+  background-color: var(--color-card-bg);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.surface-bg {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+.text-primary {
+  color: var(--color-text-primary);
+}
+.text-secondary {
+  color: var(--color-secondary);
+}
+.text-muted {
+  color: var(--color-text-muted);
+}
+.text-danger {
+  color: var(--color-danger);
+}
+.text-success {
+  color: var(--color-success);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+.bg-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+.bg-card {
+  background-color: var(--color-card-bg);
+}
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.border-border {
+  border-color: var(--color-border);
+}
+
+/* === Focus States === */
+.focus-ring {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+/* === Enhanced Animations === */
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 20px var(--color-secondary);
   }
   50% {
-    transform: translateY(-8px);
+    opacity: 0.8;
+    box-shadow: 0 0 40px var(--color-secondary);
   }
-}
-.animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
-}
-.animate-pulse-slow {
-  animation: pulse-slow 2s ease-in-out infinite;
-}
-.animate-float {
-  animation: float 2s ease-in-out infinite;
-}
-.animate-float-delay {
-  animation: float 2s ease-in-out infinite 0.3s;
-}
-.animate-float-delay-2 {
-  animation: float 2s ease-in-out infinite 0.6s;
 }
 
 @keyframes moveGradient {
@@ -56,58 +167,40 @@
     transform: translateX(-50%) translateY(-50%);
   }
 }
-@keyframes float {
-  0%,
-  100% {
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
     transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
+    opacity: 1;
   }
 }
-.animate-moveGradient {
-  animation: moveGradient 15s ease infinite;
-}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 .animate-float-delay {
   animation: float 6s ease-in-out infinite 2s;
 }
-
-:root {
-  --color-primary: #2563eb;
-  --color-primary-dark: #1e40af;
-  --color-text: #1f2937;
-  --color-text-light: #6b7280;
-  --color-danger: #ef4444;
-  --color-border: #e5e7eb;
-  --color-bg: #f9fafb;
-
-  --font-sans: "Inter", sans-serif;
+.animate-float-delay-2 {
+  animation: float 6s ease-in-out infinite 4s;
 }
-
-* {
-  box-sizing: border-box;
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
 }
-
-html {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
 }
-
-body {
-  font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  padding: 0 !important;
-  margin: 0 !important;
-  width: 100%;
-  min-height: 100vh;
+.animate-moveGradient {
+  animation: moveGradient 15s ease infinite;
 }
-
-/* Custom scrollbar utilities */
+.animate-slideInUp {
+  animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* === Enhanced Scrollbar Styling === */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -119,22 +212,89 @@ body {
 
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  scrollbar-color: var(--color-secondary) transparent;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
   background: transparent;
+  border-radius: 4px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-  border-radius: 3px;
+  background: linear-gradient(
+    180deg,
+    var(--color-secondary),
+    rgba(23, 194, 237, 0.7)
+  );
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(156, 163, 175, 0.7);
+  background: linear-gradient(
+    180deg,
+    var(--color-secondary),
+    var(--color-secondary)
+  );
+}
+
+/* === Glass Morphism Effects === */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(19, 32, 51, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+}
+
+/* === Modern Button Styles === */
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary),
+    rgba(23, 194, 237, 0.8)
+  );
+  color: var(--color-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  background: linear-gradient(
+    135deg,
+    rgba(23, 194, 237, 0.9),
+    var(--color-secondary)
+  );
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-outline:hover {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
 }

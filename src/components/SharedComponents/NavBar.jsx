@@ -33,8 +33,8 @@ const NavBar = () => {
           className={({ isActive }) =>
             `transition-all font-medium flex items-center gap-2 py-2 px-4 rounded-lg ${
               isActive
-                ? "bg-gradient-to-r from-primary-light to-primary text-white shadow-md"
-                : "text-gray-800 hover:bg-primary/20 hover:text-primary-dark"
+                ? "bg-[var(--color-secondary)] text-white shadow-md"
+                : "text-white hover:bg-[var(--color-secondary)]/20 hover:text-[var(--color-secondary)]"
             }`
           }
           onClick={() => setIsMenuOpen(false)}
@@ -48,8 +48,8 @@ const NavBar = () => {
           className={({ isActive }) =>
             `transition-all font-medium flex items-center gap-2 py-2 px-4 rounded-lg ${
               isActive
-                ? "bg-gradient-to-r from-primary-light to-primary text-white shadow-md"
-                : "text-gray-800 hover:bg-primary/20 hover:text-primary-dark"
+                ? "bg-[var(--color-secondary)] text-white shadow-md"
+                : "text-white hover:bg-[var(--color-secondary)]/20 hover:text-[var(--color-secondary)]"
             }`
           }
           onClick={() => setIsMenuOpen(false)}
@@ -61,8 +61,8 @@ const NavBar = () => {
   );
 
   return (
-    <nav className="bg-overlay backdrop-blur-lg border-b border-glow shadow-lg sticky top-0 z-50 font-inter">
-      <div className="w-full px-4 py-3 flex justify-between items-center">
+    <nav className="bg-[var(--color-card-bg)]/95 backdrop-blur-lg border-b border-[var(--color-secondary)] shadow-lg sticky top-0 z-50 font-inter">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <Logo />
 
         {/* Desktop Navigation */}
@@ -75,22 +75,22 @@ const NavBar = () => {
           {user ? (
             <div className="relative">
               <div
-                className="flex items-center gap-2 cursor-pointer rounded-full p-1 pr-3 hover:bg-primary/20 transition"
+                className="flex items-center gap-2 cursor-pointer rounded-full p-1 pr-3 hover:bg-[var(--color-secondary)]/20 transition"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
                 <div className="relative">
                   <img
                     src={user.photoURL || "/avatar.png"}
                     alt="profile"
-                    className="w-10 h-10 rounded-full border-2 border-primary-light object-cover transition-all"
+                    className="w-10 h-10 rounded-full border-2 border-[var(--color-secondary)] object-cover transition-all"
                   />
-                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-primary-light rounded-full border-2 border-white"></div>
+                  <div className="absolute bottom-0 right-0 w-3 h-3 bg-[var(--color-secondary)] rounded-full border-2 border-white"></div>
                 </div>
-                <span className="font-medium text-gray-800 hidden sm:block">
+                <span className="font-medium text-white hidden sm:block">
                   {user.displayName?.split(" ")[0] || "User"}
                 </span>
                 <FiChevronDown
-                  className={`text-gray-800 transition-transform ${
+                  className={`text-white transition-transform ${
                     isDropdownOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -103,20 +103,20 @@ const NavBar = () => {
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
-                    className="absolute right-0 mt-2 w-56 bg-overlay backdrop-blur-lg border border-glow rounded-xl shadow-lg z-50 overflow-hidden"
+                    className="absolute right-0 mt-2 w-56 bg-[var(--color-card-bg)]/95 backdrop-blur-lg border border-[var(--color-secondary)] rounded-xl shadow-lg z-50 overflow-hidden"
                   >
-                    <div className="px-4 py-3 border-b border-glow/50">
-                      <p className="font-semibold text-gray-800 truncate">
+                    <div className="px-4 py-3 border-b border-[var(--color-secondary)]/50">
+                      <p className="font-semibold text-white truncate">
                         {user.displayName || "Anonymous"}
                       </p>
-                      <p className="text-sm text-gray-600 truncate">
+                      <p className="text-sm text-gray-200 truncate">
                         {user.email}
                       </p>
                     </div>
 
                     <NavLink
                       to="/dashboard"
-                      className="px-4 py-3 hover:bg-primary/20 text-gray-800 hover:text-primary-dark flex items-center gap-2 transition"
+                      className="px-4 py-3 hover:bg-[var(--color-secondary)]/20 text-white hover:text-[var(--color-secondary)] flex items-center gap-2 transition"
                       onClick={() => setIsDropdownOpen(false)}
                     >
                       <FiUser /> Dashboard
@@ -127,7 +127,7 @@ const NavBar = () => {
                         handleLogout();
                         setIsDropdownOpen(false);
                       }}
-                      className="w-full text-left px-4 py-3 hover:bg-red-500/20 text-gray-800 hover:text-red-600 flex items-center gap-2 transition"
+                      className="w-full text-left px-4 py-3 hover:bg-red-500/20 text-white hover:text-red-400 flex items-center gap-2 transition"
                     >
                       <FiLogOut /> Logout
                     </button>
@@ -138,7 +138,7 @@ const NavBar = () => {
           ) : (
             <NavLink
               to="/login"
-              className="bg-gradient-to-r from-primary-light to-primary hover:from-primary hover:to-primary-dark text-white font-medium transition-all py-2 px-5 rounded-lg flex items-center gap-2 shadow-md"
+              className="bg-[var(--color-secondary)] hover:bg-white hover:text-[var(--color-secondary)] text-white font-medium transition-all py-2 px-5 rounded-lg flex items-center gap-2 shadow-md border border-[var(--color-secondary)]"
             >
               <FiLogIn className="text-lg" /> Login
             </NavLink>
@@ -148,7 +148,7 @@ const NavBar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-2xl p-2 rounded-lg bg-primary/20 text-primary-light hover:bg-primary/30 transition-all"
+              className="text-2xl p-2 rounded-lg bg-[var(--color-secondary)]/20 text-[var(--color-secondary)] hover:bg-[var(--color-secondary)]/30 transition-all"
             >
               {isMenuOpen ? <FiX /> : <FiMenu />}
             </button>
@@ -163,31 +163,31 @@ const NavBar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-overlay backdrop-blur-lg border-t border-glow"
+            className="md:hidden bg-[var(--color-card-bg)]/95 backdrop-blur-lg border-t border-[var(--color-secondary)]"
           >
             <ul className="px-4 py-3 space-y-2">
               {navItems}
               {user && (
                 <>
-                  <li className="px-3 pt-3 border-t border-glow/50">
+                  <li className="px-3 pt-3 border-t border-[var(--color-secondary)]/50">
                     <div className="flex items-center gap-3">
                       <img
                         src={user.photoURL || "/avatar.png"}
                         alt="profile"
-                        className="w-10 h-10 rounded-full border-2 border-primary-light object-cover"
+                        className="w-10 h-10 rounded-full border-2 border-[var(--color-secondary)] object-cover"
                       />
                       <div>
-                        <p className="font-semibold text-gray-800">
+                        <p className="font-semibold text-white">
                           {user.displayName || "Anonymous"}
                         </p>
-                        <p className="text-xs text-gray-600">{user.email}</p>
+                        <p className="text-xs text-gray-200">{user.email}</p>
                       </div>
                     </div>
                   </li>
                   <li>
                     <NavLink
                       to="/dashboard"
-                      className="block py-3 px-4 text-gray-800 hover:bg-primary/20 hover:text-primary-dark rounded-lg"
+                      className="block py-3 px-4 text-white hover:bg-[var(--color-secondary)]/20 hover:text-[var(--color-secondary)] rounded-lg"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <div className="flex items-center gap-3">
@@ -201,7 +201,7 @@ const NavBar = () => {
                         handleLogout();
                         setIsMenuOpen(false);
                       }}
-                      className="w-full text-left py-3 px-4 text-gray-800 hover:bg-red-500/20 hover:text-red-600 rounded-lg flex items-center gap-3"
+                      className="w-full text-left py-3 px-4 text-white hover:bg-red-500/20 hover:text-red-400 rounded-lg flex items-center gap-3"
                     >
                       <FiLogOut className="text-lg" /> Logout
                     </button>
