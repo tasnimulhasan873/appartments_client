@@ -2,114 +2,62 @@ import React, { useState, useEffect } from "react";
 import { Fade } from "react-awesome-reveal";
 import { FiStar } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import useAxios from "../../hooks/UseAxios";
+
+const sliderImages = [
+  {
+    imageUrl: "/public/images/apt1.jpg",
+    title: "Modern Luxury Living",
+    subtitle:
+      "Experience the best in comfort and style with our premium apartments.",
+  },
+  {
+    imageUrl: "/public/images/apt2.jpg",
+    title: "Spacious Interiors",
+    subtitle: "Enjoy open layouts and high-end finishes in every home.",
+  },
+  {
+    imageUrl: "/public/images/apt3.jpg",
+    title: "Resort-Style Amenities",
+    subtitle: "Relax and unwind with our exclusive resident facilities.",
+  },
+  {
+    imageUrl: "/public/images/apt4.jpg",
+    title: "Prime City Location",
+    subtitle: "Live close to everything you need in the heart of the city.",
+  },
+];
+
+const [aspectW, aspectH] = [16, 9]; // 16:9 ratio
 
 const SliderSection = () => {
-  const [bannerData, setBannerData] = useState({
-    bannerImages: [],
-    siteName: "",
-    siteDescription: "",
-  });
   const [currentSlide, setCurrentSlide] = useState(0);
-  const axiosInstance = useAxios();
-
-  useEffect(() => {
-    const fetchBannerData = async () => {
-      try {
-        const response = await axiosInstance.get("/bannerSlider");
-
-        if (
-          response.data.success &&
-          response.data.data.bannerImages.length > 0
-        ) {
-          setBannerData(response.data.data);
-          console.log("Banner data loaded from API:", response.data.data);
-          console.log("Banner images:", response.data.data.bannerImages);
-        } else {
-          console.log("No banner images found in API response");
-        }
-      } catch (error) {
-        console.log("API not available");
-        console.error("Error fetching banner data:", error);
-      }
-    };
-
-    fetchBannerData();
-  }, [axiosInstance]);
 
   // Auto-slide functionality
   useEffect(() => {
-    if (bannerData.bannerImages.length > 1) {
+    if (sliderImages.length > 1) {
       const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % bannerData.bannerImages.length);
+        setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
       }, 5000); // Change slide every 5 seconds
-
       return () => clearInterval(interval);
     }
-  }, [bannerData.bannerImages.length]);
+  }, []);
 
-  // Get current banner image
-  const getCurrentBanner = () => {
-    if (bannerData.bannerImages.length > 0) {
-      const currentBanner = bannerData.bannerImages[currentSlide];
-
-      // Handle different banner formats from database
-      const imageUrl = currentBanner.bannerImageUrl || currentBanner.url;
-      const title = currentBanner.bannerTitle || bannerData.siteName;
-      const subtitle =
-        currentBanner.bannerSubtitle || bannerData.siteDescription;
-
-      return {
-        imageUrl,
-        title,
-        subtitle,
-      };
-    }
-    return null;
-  };
-
-  const currentBanner = getCurrentBanner();
-
-  // Debug logging
-  console.log("Current slide:", currentSlide);
-  console.log("Current banner:", currentBanner);
-  console.log("Banner image URL:", currentBanner?.imageUrl);
-
-  // Don't render if no banner data
-  if (!currentBanner) {
-    return (
-      <div className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[90vh] overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-dark via-primary to-primary-light">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-xl">Loading banner data...</div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const currentBanner = sliderImages[currentSlide];
 
   return (
-    <div className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[90vh] overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl">
+    <div
+      className="relative w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl"
+      style={{ aspectRatio: `${aspectW} / ${aspectH}` }}
+    >
       {/* Background with Image */}
       <div className="relative w-full h-full">
         {/* Background Image */}
         <img
           src={currentBanner.imageUrl}
-          alt="Luxury Apartment"
-          className="absolute inset-0 w-full h-full object-cover"
-          onLoad={(e) => {
-            console.log("Image loaded successfully:", e.target.src);
-          }}
-          onError={(e) => {
-            console.error("Image failed to load:", e.target.src);
-            e.target.style.display = "none";
-            e.target.parentElement.classList.add(
-              "bg-gradient-to-br",
-              "from-primary-dark",
-              "via-primary",
-              "to-primary-light"
-            );
-          }}
+          alt={currentBanner.title}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ aspectRatio: `${aspectW} / ${aspectH}` }}
+          loading="eager"
         />
 
         {/* Gradient Overlays */}
@@ -129,30 +77,19 @@ const SliderSection = () => {
 
               <div className="mb-4">
                 <span className="inline-block px-3 py-1 text-xs font-medium bg-primary-dark/80 backdrop-blur-sm rounded-full border border-primary/30">
-                  {bannerData.siteName}
+                  BMS Apartments
                 </span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 leading-tight">
-                {currentBanner.title ? (
-                  <>
-                    {currentBanner.title.split(" ").slice(0, -1).join(" ")}
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-primary">
-                      {currentBanner.title.split(" ").slice(-1)}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    {bannerData.siteName.split(" ").slice(0, -1).join(" ")}
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-primary">
-                      {bannerData.siteName.split(" ").slice(-1)}
-                    </span>
-                  </>
-                )}
+                {currentBanner.title.split(" ").slice(0, -1).join(" ")}
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-primary">
+                  {currentBanner.title.split(" ").slice(-1)}
+                </span>
               </h1>
 
               <p className="text-base sm:text-lg lg:text-xl text-gray-200 mb-6 leading-relaxed max-w-3xl mx-auto">
-                {currentBanner.subtitle || bannerData.siteDescription}
+                {currentBanner.subtitle}
               </p>
 
               {/* Features */}
@@ -215,9 +152,9 @@ const SliderSection = () => {
         </div>
 
         {/* Slide Indicators */}
-        {bannerData.bannerImages.length > 1 && (
+        {sliderImages.length > 1 && (
           <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2">
-            {bannerData.bannerImages.map((_, index) => (
+            {sliderImages.map((_, index) => (
               <button
                 key={index}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${

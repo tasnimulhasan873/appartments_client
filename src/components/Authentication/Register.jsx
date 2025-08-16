@@ -79,7 +79,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-primary flex items-center justify-center p-4 sm:p-8">
+    <div className="min-h-screen bg-primary flex items-center justify-center p-4 sm:p-8 pt-20 mt-8 md:pt-10 md:mt-16 lg:mt-12  lg:pt-15">
       <div className="w-full max-w-md glass-dark rounded-3xl shadow-xl p-6 sm:p-8 animate-slideInUp">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-2">
           Create Account

@@ -50,6 +50,21 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Add padding-top to account for fixed navbar */
+  padding-top: 64px; /* 16 * 4 = 64px for h-16 */
+}
+
+/* Responsive navbar spacing */
+@media (min-width: 640px) {
+  body {
+    padding-top: 72px; /* 18 * 4 = 72px for h-18 */
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding-top: 80px; /* 20 * 4 = 80px for h-20 */
+  }
 }
 
 /* === Light/Dark Mode === */

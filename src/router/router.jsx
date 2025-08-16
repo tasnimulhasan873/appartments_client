@@ -5,6 +5,10 @@ import Login from "../components/Authentication/Login";
 import Register from "../components/Authentication/Register";
 import Apartments from "../Pages/Home/Apartments/Apartments";
 import Contact from "../Pages/Contact/Contact";
+import About from "../Pages/About/About";
+import FAQ from "../Pages/Static/FAQ";
+import PrivacyPolicy from "../Pages/Static/PrivacyPolicy";
+import TermsOfService from "../Pages/Static/TermsOfService";
 import DashboardLayouts from "../Layouts/DashboardLayouts";
 import PrivateRoutes from "../routes/PrivateRoutes";
 import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
@@ -32,6 +36,7 @@ import WebsiteAnalytics from "../Pages/Dashboard/SuperAdmin/WebsiteAnalytics";
 
 import StripeWrapper from "../Pages/Dashboard/Member/StripeWrapper";
 import ManageProperties from "../Pages/Dashboard/Admin/ManageProperties";
+import ApartmentDetails from "../Pages/Home/Apartments/ApartmentDetails";
 
 export const router = createBrowserRouter([
   {
@@ -55,8 +60,24 @@ export const router = createBrowserRouter([
         Component: Apartments,
       },
       {
+        path: "/about",
+        Component: About,
+      },
+      {
         path: "/contact",
         Component: Contact,
+      },
+      {
+        path: "/faq",
+        Component: FAQ,
+      },
+      {
+        path: "/privacy-policy",
+        Component: PrivacyPolicy,
+      },
+      {
+        path: "/terms-of-service",
+        Component: TermsOfService,
       },
       {
         path: "/forbidden",
@@ -215,6 +236,8 @@ export const router = createBrowserRouter([
           </SuperAdminRoutes>
         ),
       },
+      // (Removed duplicate /apartments/:id route from /dashboard children)
     ],
   },
 ]);
+// (Removed from /dashboard children)

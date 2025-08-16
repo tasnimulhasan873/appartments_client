@@ -5,7 +5,9 @@ import {
   FiDollarSign,
   FiCalendar,
   FiCheck,
+  FiArrowRight,
 } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import useUserRole from "../../../hooks/useUserRole";
 
 const ApartmentCard = ({ apartment, handleAgreement, userAgreements = [] }) => {
@@ -93,6 +95,7 @@ const ApartmentCard = ({ apartment, handleAgreement, userAgreements = [] }) => {
             Available
           </div>
         )}
+        {/* See More Button moved to content section below */}
       </div>
 
       {/* Content Section */}
@@ -157,6 +160,14 @@ const ApartmentCard = ({ apartment, handleAgreement, userAgreements = [] }) => {
         <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
           <span className="font-medium">Owner:</span> {apartment.ownerName}
         </div>
+
+        {/* See More Button */}
+        <Link
+          to={`/apartments/${apartment._id}`}
+          className="w-full inline-flex items-center justify-center gap-2 py-2 px-4 mb-2 rounded-xl font-medium bg-gradient-to-r from-primary-light to-primary text-white hover:from-primary hover:to-primary-dark shadow-md hover:shadow-lg transition-all duration-300 text-sm"
+        >
+          See More <FiArrowRight />
+        </Link>
 
         {/* Agreement Button */}
         <button

@@ -70,6 +70,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  to="/about"
+                  className="text-white/80 hover:text-primary-light font-medium transition-all duration-300 hover:translate-x-1 inline-block"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/contact"
                   className="text-white/80 hover:text-primary-light font-medium transition-all duration-300 hover:translate-x-1 inline-block"
                 >
@@ -78,18 +86,10 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/login"
+                  to="/faq"
                   className="text-white/80 hover:text-primary-light font-medium transition-all duration-300 hover:translate-x-1 inline-block"
                 >
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/register"
-                  className="text-white/80 hover:text-primary-light font-medium transition-all duration-300 hover:translate-x-1 inline-block"
-                >
-                  Register
+                  FAQ
                 </Link>
               </li>
             </ul>
