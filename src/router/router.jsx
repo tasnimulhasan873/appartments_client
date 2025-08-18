@@ -15,7 +15,7 @@ import AdminProfile from "../Pages/Dashboard/Admin/AdminProfile";
 import UserProfile from "../Pages/Dashboard/UserProfile";
 import AdminRoutes from "../routes/AdminRoutes";
 import SuperAdminRoutes from "../routes/SuperAdminRoutes";
-import Forbidden from "../Pages/Dashboard/Forbidden";
+import ErrorPage from "../Pages/ErrorPage";
 import MemberProfile from "../Pages/Dashboard/Member/MemberProfile";
 import UserAnnouncements from "../Pages/Dashboard/UserAnnouncements";
 import MemberAnnouncements from "../Pages/Dashboard/Member/MemberAnnouncements";
@@ -86,7 +86,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "/forbidden",
-        element: <Forbidden />,
+        element: (
+          <ErrorPage
+            title="Access Denied"
+            message="You do not have permission to view this page."
+            code={403}
+          />
+        ),
+      },
+      {
+        path: "*",
+        element: (
+          <ErrorPage
+            title="Page Not Found"
+            message="The page you are looking for does not exist."
+            code={404}
+          />
+        ),
       },
     ],
   },

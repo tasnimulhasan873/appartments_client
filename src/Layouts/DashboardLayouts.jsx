@@ -5,12 +5,27 @@ import Logo from "../components/SharedComponents/logo";
 import { FiMenu, FiX } from "react-icons/fi";
 import UseAuth from "../hooks/UseAuth";
 import useUserRole from "../hooks/useUserRole";
+import NeonLoader from "../NeonLoader";
+import ThemeToggle from "../components/ThemeToggle";
 
 const DashboardLayouts = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [theme, setTheme] = useState(
+    () =>
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light")
+  );
   const { logOut, user } = UseAuth();
-  const { role } = useUserRole();
+  const { role, loading } = useUserRole();
   const navigate = useNavigate();
+
+  // Apply theme to html element
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   // Handle responsive behavior
   useEffect(() => {
@@ -26,29 +41,42 @@ const DashboardLayouts = () => {
 
   const handleSidebarToggle = () => setSidebarOpen((open) => !open);
 
+  if (loading) {
+    return <NeonLoader size="default" overlay={true} />;
+  }
+
   return (
-    <div className="min-h-screen bg-primary font-['Inter'] flex">
+    <div className="min-h-screen bg-primary dark:bg-gray-900 font-['Inter'] flex relative">
+      {/* Theme Toggle Button - Top Right */}
+      <div className="fixed top-4 right-4 z-[100]">
+        <ThemeToggle theme={theme} setTheme={setTheme} />
+      </div>
       {/* Desktop Sidebar - Fixed */}
       <div className="hidden lg:block lg:w-64 xl:w-72 flex-shrink-0 fixed left-0 top-0 h-full z-30">
         <DashboardSidebar onLogout={logOut} />
       </div>
 
-      {/* YouTube-style Bottom Navigation for Mobile/Tablet */}
+      {/* Mobile Sidebar Slide-in from Left */}
       {sidebarOpen && (
-        <div className="lg:hidden fixed inset-0 z-50">
+        <div className="lg:hidden fixed inset-0 z-50 flex">
           {/* Overlay */}
           <div
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             onClick={handleSidebarToggle}
           />
-
-          {/* Bottom Sheet - Fixed and Responsive */}
-          <div className="absolute bottom-0 left-0 right-0 z-50 bg-overlay backdrop-blur-lg border-t border-glow shadow-2xl rounded-t-3xl overflow-hidden">
-            <div className="h-1 w-12 bg-white/30 rounded-full mx-auto mt-3 mb-2"></div>
-            <div className="max-h-[75vh] min-h-[300px] overflow-y-auto scrollbar-hide">
+          {/* Sidebar Slide-in */}
+          <div className="relative w-64 max-w-[80vw] h-full bg-overlay backdrop-blur-lg border-r border-glow shadow-2xl z-50 animate-slideInLeft">
+            <div className="flex justify-end p-4">
+              <button
+                onClick={handleSidebarToggle}
+                className="text-2xl text-primary-light"
+              >
+                <FiX />
+              </button>
+            </div>
+            <div className="overflow-y-auto h-[calc(100vh-64px)] pb-8">
               <DashboardSidebar
                 onLogout={logOut}
-                isBottomSheet={true}
                 onNavigate={handleSidebarToggle}
               />
             </div>
