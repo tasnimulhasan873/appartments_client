@@ -8,6 +8,7 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Button from "../../../components/Button";
 import useUserRole from "../../../hooks/useUserRole";
 
 const ApartmentCard = ({ apartment, handleAgreement, userAgreements = [] }) => {
@@ -64,7 +65,7 @@ const ApartmentCard = ({ apartment, handleAgreement, userAgreements = [] }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200/50 dark:border-gray-700/50">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200/50 dark:border-gray-700/50 w-full max-w-[350px] flex flex-col justify-between">
       {/* Image Section */}
       <div className="relative h-48 overflow-hidden">
         {apartment.images && apartment.images.length > 0 && !imageError ? (
@@ -162,26 +163,26 @@ const ApartmentCard = ({ apartment, handleAgreement, userAgreements = [] }) => {
         </div>
 
         {/* See More Button */}
-        <Link
-          to={`/apartments/${apartment._id}`}
-          className="w-full inline-flex items-center justify-center gap-2 py-2 px-4 mb-2 rounded-xl font-medium bg-gradient-to-r from-primary-light to-primary text-white hover:from-primary hover:to-primary-dark shadow-md hover:shadow-lg transition-all duration-300 text-sm"
-        >
-          See More <FiArrowRight />
+
+        <Link to={`/apartments/${apartment._id}`} className="block w-full mb-2">
+          <Button
+            type="fill"
+            className="w-full rounded-2xl flex items-center justify-center gap-2 text-sm"
+          >
+            See More <FiArrowRight />
+          </Button>
         </Link>
 
         {/* Agreement Button */}
-        <button
+        <Button
+          type={role !== "admin" && hasAgreement ? "outline" : "fill"}
           onClick={() => handleAgreement(apartment)}
           disabled={role !== "admin" && hasAgreement}
-          className={`w-full py-3 px-4 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
-            role !== "admin" && hasAgreement
-              ? "bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
-              : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          }`}
+          className="w-full rounded-2xl flex items-center justify-center gap-2 py-3 px-4"
         >
           <FiCalendar className="text-lg" />
           {hasAgreement ? "Agreement Submitted" : "Request Agreement"}
-        </button>
+        </Button>
       </div>
     </div>
   );
